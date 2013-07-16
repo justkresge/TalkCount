@@ -81,7 +81,10 @@ public class MainActivity extends Activity implements OnClickListener {
 
 			String str = new String();
 			String first = "make";
+			String first1 = "buckets";
+			String first3 = "that's in";
 			String second = "miss";
+			String second2 = "I suck";
 			// this is just a log that prints the results
 			Log.d(TAG, "onResults " + results);
 
@@ -93,12 +96,12 @@ public class MainActivity extends Activity implements OnClickListener {
 				str += data.get(i);
 			}
 			;
-			if (data.contains(first)) {
+			if ((data.contains(first)) || (data.contains(first1)) || (data.contains(first3))) {
 				shotsMade++;
 				resulty.setText("Yess!");
-			made.setText("Makes: " + shotsMade);
+				made.setText("Makes: " + shotsMade);
 
-			} else if (data.contains(second)) {
+			} else if ((data.contains(second)) || (data.contains(second2))) {
 				shotsMiss++;
 				resulty.setText("Booo");
 				miss.setText("Misses: " + shotsMiss);
