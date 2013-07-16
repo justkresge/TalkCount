@@ -62,7 +62,18 @@ public class MainActivity extends Activity implements OnClickListener {
 			mText.setText("error " + error);
 		}
 		
-	
+		public String getFirst(Intent data){
+		    List<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+		    if(results != null && results.size() > 0){
+		    	
+		        return results.get(0);
+		        
+		    }
+		     //or maybe: return "";
+		    resulty.setText(getFirst); 
+			return null;
+			
+		}
 
 		public void onResults(Bundle results) {
 			String str = new String();
@@ -97,6 +108,5 @@ public class MainActivity extends Activity implements OnClickListener {
 			sr.startListening(intent);
 			Log.i("111111", "11111111");
 		}
-		
 	}
 }
