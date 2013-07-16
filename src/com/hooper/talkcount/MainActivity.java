@@ -17,11 +17,20 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity implements OnClickListener {
 
+	public String getFirst(Intent data) {
+		List<String> results = data
+				.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+		if (results != null && results.size() > 0) {
+			return results.get(0);
+		}
+		return null; // or maybe: return "";
+	}
+
 	private TextView mText;
-	private TextView resulty;
+	public TextView resulty;
+	public String getFirst;
 	private SpeechRecognizer sr;
 	private static final String TAG = "MyStt3Activity";
-	private String getFirst;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -61,34 +70,27 @@ public class MainActivity extends Activity implements OnClickListener {
 			mText.setText("error " + error);
 		}
 
-		public String getFirst(Intent data) {
-			List<String> results = data
-					.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-			if (results != null && results.size() > 0) {
-
-				return results.get(0);
-
-			}
-			// or maybe: return "";
-			resulty.setText(getFirst);
-			return null;
-
-		}
-
 		public void onResults(Bundle results) {
+
 			String str = new String();
+			String first = "make";
 			// this is just a log that prints the results
 			Log.d(TAG, "onResults " + results);
 
-			/*
-			 * Got rid of this stuff below */
-			 
-			  ArrayList data = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION); for
-			  (int i = 0; i < data.size(); i++) { Log.d(TAG, "result " +
-			  data.get(i)); str += data.get(i); }
-			  
-			  mText.setText("results: " + String.valueOf(data.size()));
-			 
+			ArrayList<String> data = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+
+		for (int i = 0; i < data.size(); i++) {
+				Log.d(TAG, "result " + data.get(i));
+				str += data.get(i);			
+			};
+			if (data.contains(first)){
+				resulty.setText("Yess!");
+			} else{
+				resulty.setText("boo");
+			}
+
+			mText.setText("results: " + String.valueOf(data.size()));
+
 		}
 
 		public void onPartialResults(Bundle partialResults) {
@@ -97,6 +99,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		public void onEvent(int eventType, Bundle params) {
 			Log.d(TAG, "onEvent " + eventType);
+			
 		}
 	}
 
