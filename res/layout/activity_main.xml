@@ -23,16 +23,32 @@
         android:layout_toRightOf="@+id/textView1"
         android:text="Button" />
 
-    <TextView
-        android:id="@+id/resulty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/btn_speak"
-        android:layout_marginLeft="38dp"
-        android:layout_marginTop="66dp"
-        android:text="TextView" />
+ <TextView
+     android:id="@+id/tvMiss"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_below="@+id/resulty"
+     android:layout_marginLeft="42dp"
+     android:layout_marginTop="74dp"
+     android:layout_toRightOf="@+id/btn_speak"
+     android:text="Misses: 0" />
 
-    
+ <TextView
+     android:id="@+id/tvMake"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignBaseline="@+id/tvMiss"
+     android:layout_alignBottom="@+id/tvMiss"
+     android:layout_alignRight="@+id/resulty"
+     android:text="Makes: 0" />
+
+ <TextView
+     android:id="@+id/tvresulty"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_below="@+id/btn_speak"
+     android:layout_centerHorizontal="true"
+     android:layout_marginTop="56dp"
+     android:text="Resulty" />
 
 </RelativeLayout>
