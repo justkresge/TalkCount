@@ -28,11 +28,6 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	private TextView mText;
 	public TextView resulty;
-	public TextView made;
-	public TextView miss;
-	public int shotsMade = 0;
-	public int shotsMiss = 0;
-
 	public String getFirst;
 	private SpeechRecognizer sr;
 	private static final String TAG = "MyStt3Activity";
@@ -43,9 +38,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_main);
 		Button speakButton = (Button) findViewById(R.id.btn_speak);
 		mText = (TextView) findViewById(R.id.textView1);
-		resulty = (TextView) findViewById(R.id.tvresulty);
-		made = (TextView) findViewById(R.id.tvMake);
-		miss = (TextView) findViewById(R.id.tvMiss);
+		resulty = (TextView) findViewById(R.id.resulty);
 		speakButton.setOnClickListener(this);
 		sr = SpeechRecognizer.createSpeechRecognizer(this);
 		sr.setRecognitionListener(new listener());
@@ -81,27 +74,19 @@ public class MainActivity extends Activity implements OnClickListener {
 
 			String str = new String();
 			String first = "make";
-			String second = "miss";
 			// this is just a log that prints the results
 			Log.d(TAG, "onResults " + results);
 
-			ArrayList<String> data = results
-					.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+			ArrayList<String> data = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
 
-			for (int i = 0; i < data.size(); i++) {
+		for (int i = 0; i < data.size(); i++) {
 				Log.d(TAG, "result " + data.get(i));
-				str += data.get(i);
-			}
-			;
-			if (data.contains(first)) {
-				shotsMade++;
+				str += data.get(i);			
+			};
+			if (data.contains(first)){
 				resulty.setText("Yess!");
-			made.setText("Makes: " + shotsMade);
-
-			} else if (data.contains(second)) {
-				shotsMiss++;
-				resulty.setText("Booo");
-				miss.setText("Misses: " + shotsMiss);
+			} else{
+				resulty.setText("boo");
 			}
 
 			mText.setText("results: " + String.valueOf(data.size()));
@@ -114,7 +99,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		public void onEvent(int eventType, Bundle params) {
 			Log.d(TAG, "onEvent " + eventType);
-
+			
 		}
 	}
 
