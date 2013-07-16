@@ -1,6 +1,5 @@
 package com.hooper.talkcount;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,30 +60,35 @@ public class MainActivity extends Activity implements OnClickListener {
 			Log.d(TAG, "error " + error);
 			mText.setText("error " + error);
 		}
-		
-		public String getFirst(Intent data){
-		    List<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-		    if(results != null && results.size() > 0){
-		    	
-		        return results.get(0);
-		        
-		    }
-		     //or maybe: return "";
-		    resulty.setText(getFirst); 
+
+		public String getFirst(Intent data) {
+			List<String> results = data
+					.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+			if (results != null && results.size() > 0) {
+
+				return results.get(0);
+
+			}
+			// or maybe: return "";
+			resulty.setText(getFirst);
 			return null;
-			
+
 		}
 
 		public void onResults(Bundle results) {
 			String str = new String();
+			// this is just a log that prints the results
 			Log.d(TAG, "onResults " + results);
-			ArrayList data = results
-					.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-			for (int i = 0; i < data.size(); i++) {
-				Log.d(TAG, "result " + data.get(i));
-				str += data.get(i);
-			}
-			mText.setText("results: " + String.valueOf(data.size()));
+
+			/*
+			 * Got rid of this stuff below */
+			 
+			  ArrayList data = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION); for
+			  (int i = 0; i < data.size(); i++) { Log.d(TAG, "result " +
+			  data.get(i)); str += data.get(i); }
+			  
+			  mText.setText("results: " + String.valueOf(data.size()));
+			 
 		}
 
 		public void onPartialResults(Bundle partialResults) {
