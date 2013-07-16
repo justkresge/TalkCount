@@ -1,8 +1,6 @@
 package com.hooper.talkcount;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,14 +15,12 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity implements OnClickListener {
 
-	public String getFirst(Intent data) {
-		List<String> results = data
-				.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-		if (results != null && results.size() > 0) {
-			return results.get(0);
-		}
-		return null; // or maybe: return "";
-	}
+	/*
+	 * public String getFirst(Intent data) { List<String> results = data
+	 * .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS); if (results !=
+	 * null && results.size() > 0) { return results.get(0); } return null; // or
+	 * maybe: return ""; }
+	 */
 
 	private TextView mText;
 	public TextView resulty;
@@ -96,7 +92,8 @@ public class MainActivity extends Activity implements OnClickListener {
 				str += data.get(i);
 			}
 			;
-			if ((data.contains(first)) || (data.contains(first1)) || (data.contains(first3))) {
+			if ((data.contains(first)) || (data.contains(first1))
+					|| (data.contains(first3))) {
 				shotsMade++;
 				resulty.setText("Yess!");
 				made.setText("Makes: " + shotsMade);
@@ -108,6 +105,10 @@ public class MainActivity extends Activity implements OnClickListener {
 			}
 
 			mText.setText("results: " + String.valueOf(data.size()));
+
+			while (shotsMade < 10) {
+
+			}
 
 		}
 
@@ -123,15 +124,17 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	public void onClick(View v) {
 		if (v.getId() == R.id.btn_speak) {
+
 			Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-			intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+		intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
 					RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-			intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,
+		intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,
 					"voice.recognition.test");
 
 			intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 5);
 			sr.startListening(intent);
 			Log.i("111111", "11111111");
+
 		}
 	}
 }
