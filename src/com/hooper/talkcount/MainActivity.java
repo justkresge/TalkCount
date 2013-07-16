@@ -32,7 +32,6 @@ public class MainActivity extends Activity implements OnClickListener {
 	public TextView miss;
 	public int shotsMade = 0;
 	public int shotsMiss = 0;
-//	private Button speakButton = (Button) findViewById(R.id.btn_speak);
 
 	public String getFirst;
 	private SpeechRecognizer sr;
@@ -42,12 +41,11 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+		Button speakButton = (Button) findViewById(R.id.btn_speak);
 		mText = (TextView) findViewById(R.id.textView1);
 		resulty = (TextView) findViewById(R.id.tvresulty);
 		made = (TextView) findViewById(R.id.tvMake);
 		miss = (TextView) findViewById(R.id.tvMiss);
-		Button speakButton = (Button) findViewById(R.id.btn_speak);
 		speakButton.setOnClickListener(this);
 		sr = SpeechRecognizer.createSpeechRecognizer(this);
 		sr.setRecognitionListener(new listener());
@@ -80,7 +78,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 
 		public void onResults(Bundle results) {
-			Button speakButton = (Button) findViewById(R.id.btn_speak);
+
 			String str = new String();
 			String first = "make";
 			String first1 = "buckets";
@@ -102,17 +100,11 @@ public class MainActivity extends Activity implements OnClickListener {
 				shotsMade++;
 				resulty.setText("Yess!");
 				made.setText("Makes: " + shotsMade);
-				
-		//	while(shotsMade < 10){
-			//		speakButton.performClick();
-		//		}
 
 			} else if ((data.contains(second)) || (data.contains(second2))) {
 				shotsMiss++;
 				resulty.setText("Booo");
 				miss.setText("Misses: " + shotsMiss);
-			} else {
-				resulty.setText("Didn't Understand You");
 			}
 
 			mText.setText("results: " + String.valueOf(data.size()));
@@ -143,5 +135,3 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 	}
 }
-	
-	
